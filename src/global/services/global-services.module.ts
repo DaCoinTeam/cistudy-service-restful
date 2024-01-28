@@ -22,11 +22,11 @@ import { TypeOrmModule } from "@nestjs/typeorm"
     //3rd
         FirebaseService,
         MailerService,
-        
+
         //base
         Sha256Service,
         AuthManagerService,
-        JwtService
+        JwtService,
     ],
 })
 export default class GlobalServicesModule {}

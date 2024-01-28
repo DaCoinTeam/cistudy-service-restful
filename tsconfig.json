@@ -20,8 +20,9 @@
     "paths": {
       "@config": ["src/config"],
       "@database": ["src/database"],
+      "@features": ["src/features"],
       "@global": ["src/global"],
-      "@shared": ["src/shared"]
+      "@shared": ["src/shared"],
     },
   },
 }

@@ -2,8 +2,11 @@ syntax = "proto3";
 
 package base;
 
-import "../enums/user-kind.proto";
+import "google/protobuf/timestamp.proto";
+
+import "../enums/user-kind.enum.proto";
 import "../enums/user-role.enum.proto";
+
 
 message UserDto {
     string userId = 1;

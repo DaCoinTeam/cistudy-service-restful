@@ -3,12 +3,11 @@ import { Injectable } from "@nestjs/common"
 import { createTransport } from "nodemailer"
 import { InternalServerErrorException } from "@nestjs/common"
 import { AuthManagerService } from "../base"
+import { TokenType } from "@shared"
 
 @Injectable()
 export default class MailerService {
-    constructor(
-		private readonly authManagerService: AuthManagerService
-	) {}
+    constructor(private readonly authManagerService: AuthManagerService) {}
 
     private transporter = createTransport({
         service: "gmail",
@@ -20,7 +19,10 @@ export default class MailerService {
 
     private mailOptions = (userId: string, email: string) => {
         const appUrl = appConfig().appUrl
-        const token = this.authManagerService.(userId)
+        const token = this.authManagerService.generateToken(
+            { userId },
+            TokenType.Verify,
+        )
         return {
             from: thirdPartyConfig().mailer.user,
             to: email,

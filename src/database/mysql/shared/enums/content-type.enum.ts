@@ -1,5 +1,3 @@
-import { registerEnumType } from "@nestjs/graphql"
-
 enum ContentType {
   Text = "Text",
   Video = "Video",
@@ -8,10 +6,5 @@ enum ContentType {
   Label = "Label",
   Application = "Application",
 }
-
-//for graphql
-registerEnumType(ContentType, {
-    name: "ContentType",
-})
 
 export default ContentType

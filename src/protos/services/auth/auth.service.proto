@@ -3,7 +3,7 @@ syntax = "proto3";
 package auth;
 
 import "./inputs/sign-in.input.proto";
-import "dtos/user.dto.proto";
+import "../../dtos/user.dto.proto";
 
 service AuthService {
   rpc SignIn (SignInInput) returns (UserDto) {}

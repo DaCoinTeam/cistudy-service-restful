@@ -1,5 +1,3 @@
-import { registerEnumType } from "@nestjs/graphql"
-
 enum VerifiedStatus {
   Pending = "Pending",
   Approved = "Approved",
@@ -7,7 +5,3 @@ enum VerifiedStatus {
 }
 export default VerifiedStatus
 
-//for graphql
-registerEnumType(VerifiedStatus, {
-    name: "VerifiedStatus",
-})

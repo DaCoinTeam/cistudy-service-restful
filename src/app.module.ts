@@ -2,6 +2,8 @@ import { Module } from "@nestjs/common"
 import { ConfigModule } from "@nestjs/config"
 import { TypeOrmModule } from "@nestjs/typeorm"
 import { databaseConfig, jwtConfig, thirdPartyConfig } from "@config"
+import { GlobalServicesModule } from "@global"
+import { AuthModule } from "@features"
 
 @Module({
     imports: [
@@ -18,6 +20,12 @@ import { databaseConfig, jwtConfig, thirdPartyConfig } from "@config"
             autoLoadEntities: true,
             synchronize: true,
         }),
+
+        //global
+        GlobalServicesModule,
+
+        //features
+        AuthModule
     ],
     controllers: [],
     providers: [],

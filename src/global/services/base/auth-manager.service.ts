@@ -27,13 +27,6 @@ export default class AuthManagerService {
         }
     }
 
-	
-
-    async getTokenType(token: string): Promise<TokenType> {
-        const { type } = await this.verifyToken(token)
-        return type
-    }
-
     async validateSession(userId: string, clientId: string): Promise<void> {
         const session = await this.sessionMySqlRepository.findOneBy({
             userId,
@@ -44,7 +37,7 @@ export default class AuthManagerService {
             throw new UnauthorizedException("Session is disabled.")
     }
 
-    private async generateToken<T extends PayloadLike>(
+    async generateToken<T extends PayloadLike>(
         data: T,
         type: TokenType = TokenType.Access,
     ) {
