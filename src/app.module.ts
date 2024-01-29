@@ -3,13 +3,14 @@ import { ConfigModule } from "@nestjs/config"
 import { TypeOrmModule } from "@nestjs/typeorm"
 import { databaseConfig, jwtConfig, thirdPartyConfig } from "@config"
 import { GlobalServicesModule } from "@global"
-import { AuthModule } from "@features"
+import { FeaturesModule } from "@features"
 
 @Module({
     imports: [
         ConfigModule.forRoot({
             load: [databaseConfig, jwtConfig, thirdPartyConfig],
         }),
+        
         TypeOrmModule.forRoot({
             type: "mysql",
             host: databaseConfig().mysql.host,
@@ -21,11 +22,9 @@ import { AuthModule } from "@features"
             synchronize: true,
         }),
 
-        //global
         GlobalServicesModule,
-
-        //features
-        AuthModule
+        
+        FeaturesModule
     ],
     controllers: [],
     providers: [],

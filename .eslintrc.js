@@ -18,14 +18,12 @@ module.exports = {
         "@typescript-eslint"
     ],
     "rules": {
+        "no-mixed-spaces-and-tabs": "off", 
         "indent": [
             "error",
             4
         ],
-        "linebreak-style": [
-            "error",
-            "windows"
-        ],
+        "linebreak-style": "off",
         "quotes": [
             "error",
             "double"

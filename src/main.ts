@@ -9,17 +9,25 @@ const bootstrap = async () => {
         {
             transport: Transport.GRPC,
             options: {
-                package: "auth",
-                protoPath: join(
-                    process.cwd(),
-                    "src",
-                    "protos",
-                    "services",
-                    "auth",
-                    "auth.service.proto",
-                ),
-            },
-        },
+                package: ["auth", "course"],
+                protoPath: [
+                    join(
+                        process.cwd(),
+                        "protos",
+                        "services",
+                        "auth",
+                        "auth.service.proto",
+                    ),
+                    join(
+                        process.cwd(),
+                        "protos",
+                        "services",
+                        "course",
+                        "course.service.proto",
+                    ),
+                ],
+            }
+        }
     )
     await app.listen()
 }

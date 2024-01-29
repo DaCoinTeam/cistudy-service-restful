@@ -1,6 +1,6 @@
 import Payload from "./payload.interface"
-import ValidatedResult from "./validated-result.interface"
 import Response from "./response.interface"
 import AuthTokens from "./auth-tokens.interface"
+import FormDataRequestBody from "./form-data-request-body.interface"
 
-export { Payload, ValidatedResult, Response, AuthTokens }
+export { Payload, Response, AuthTokens, FormDataRequestBody }

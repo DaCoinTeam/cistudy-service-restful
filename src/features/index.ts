@@ -1,1 +1,2 @@
-export * from "./auth"
+import FeaturesModule from "./features.module"
+export { FeaturesModule }

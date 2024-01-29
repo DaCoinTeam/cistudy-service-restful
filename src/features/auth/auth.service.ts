@@ -14,7 +14,7 @@ export default class AuthService  {
         private readonly sha256Service: Sha256Service
     ){}
 
-    @GrpcMethod()
+    @GrpcMethod("AuthService", "SignIn")
     async signIn(data: SignInInput): Promise<UserMySqlEntity> {
         const found = await this.userMySqlRepository.findOneBy({
             email: data.email,
