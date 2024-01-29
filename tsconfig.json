@@ -22,7 +22,7 @@
       "@database": ["src/database"],
       "@services": ["src/services"],
       "@global": ["src/global"],
-      "@shared": ["src/shared"],
+      "@common": ["src/common"],
     },
   },
 }

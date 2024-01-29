@@ -9,7 +9,7 @@ const bootstrap = async () => {
         {
             transport: Transport.GRPC,
             options: {
-                package: ["auth"],
+                package: ["auth", "course"],
                 protoPath: [
                     join(
                         process.cwd(),

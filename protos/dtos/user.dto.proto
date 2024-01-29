@@ -1,14 +1,12 @@
 syntax = "proto3";
 
-package base;
-
-import "google/protobuf/timestamp.proto";
-
 import "../enums/user-kind.enum.proto";
 import "../enums/user-role.enum.proto";
 
+import "post.dto.proto";
+import "course.dto.proto";
 
-message UserDto {
+message User {
     string userId = 1;
     string email = 2;
     string password = 3;
@@ -19,7 +17,7 @@ message UserDto {
     string walletId = 8;
     string firstName = 9;
     string lastName = 10;
-    google.protobuf.Timestamp birthdate = 11;
+    string birthdate = 11;
     bool verified = 12;
     UserKind kind = 13;
     string externalId = 14;
@@ -45,12 +43,4 @@ message PostLike {
 
 message Enrolled {
     // Define fields for EnrolledEntity here
-}
-
-message Post {
-    // Define fields for PostEntity here
-}
-
-message Course {
-    // Define fields for CourseEntity here
 }

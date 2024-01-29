@@ -1,7 +1,7 @@
 import { appConfig, jwtConfig, thirdPartyConfig } from "@config"
 import { Injectable } from "@nestjs/common"
 import { createTransport } from "nodemailer"
-import { TokenType } from "@shared"
+import { TokenType } from "@common"
 import { JwtService } from "@nestjs/jwt"
 import { GrpcInternalException } from "nestjs-grpc-exceptions"
 
