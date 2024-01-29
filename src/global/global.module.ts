@@ -1,6 +1,5 @@
 import { Global, Module } from "@nestjs/common"
-import { MailerService, Sha256Service, AuthManagerService } from "./base"
-import { FirebaseService } from "./3rd"
+import { FirebaseService, MailerService, Sha256Service } from "./services"
 import { JwtService } from "@nestjs/jwt"
 import { SessionMySqlEntity } from "@database"
 import { TypeOrmModule } from "@nestjs/typeorm"
@@ -15,7 +14,6 @@ import { TypeOrmModule } from "@nestjs/typeorm"
 
         //base
         Sha256Service,
-        AuthManagerService,
         JwtService,
     ],
     providers: [
@@ -25,8 +23,7 @@ import { TypeOrmModule } from "@nestjs/typeorm"
 
         //base
         Sha256Service,
-        AuthManagerService,
         JwtService,
     ],
 })
-export default class GlobalServicesModule {}
+export default class GlobalModule {}

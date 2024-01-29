@@ -1,0 +1,5 @@
+syntax = "proto3";
+
+message UserId {
+    required string userId = 1;
+}

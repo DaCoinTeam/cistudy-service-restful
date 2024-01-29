@@ -1,6 +1,5 @@
-export * from "./3rd"
-export * from "./base"
+import MailerService from "./mailer.service"
+import Sha256Service from "./sha256.service"
+import FirebaseService from "./firebase.service"
 
-import GlobalServicesModule from "./global-services.module"
-
-export { GlobalServicesModule }
+export { MailerService, Sha256Service, FirebaseService }

@@ -22,7 +22,7 @@ export default class FirebaseService {
                 credential: admin.credential.cert(adminConfig),
             })
         } else {
-            app = admin.app() 
+            app = admin.app() // if default app already exists, use it.
         }
 
         this.auth = firebase.auth(app)

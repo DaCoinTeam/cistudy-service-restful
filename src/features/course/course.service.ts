@@ -15,9 +15,9 @@ export default class AuthService  {
         private readonly sha256Service: Sha256Service
     ){}
 
-    @GrpcMethod("CourseService", "Create")
-    async create(body: FormDataRequestBody<CreateData>): Promise<CourseMySqlEntity> {
-        const { data, files } = body
-        return this.courseMySqlRepository.create(data)
-    }
+    // @GrpcMethod("CourseService", "Create")
+    // async create(body: FormDataRequestBody<CreateData>): Promise<CourseMySqlEntity> {
+    //     const { data, files } = body
+    //     return this.courseMySqlRepository.create(data)
+    // }
 }

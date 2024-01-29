@@ -2,15 +2,17 @@ import { Module } from "@nestjs/common"
 import { ConfigModule } from "@nestjs/config"
 import { TypeOrmModule } from "@nestjs/typeorm"
 import { databaseConfig, jwtConfig, thirdPartyConfig } from "@config"
-import { GlobalServicesModule } from "@global"
+import { GlobalModule } from "@global"
 import { FeaturesModule } from "@features"
+import { APP_FILTER } from "@nestjs/core"
+import { GrpcServerExceptionFilter } from "nestjs-grpc-exceptions"
 
 @Module({
     imports: [
         ConfigModule.forRoot({
             load: [databaseConfig, jwtConfig, thirdPartyConfig],
         }),
-        
+
         TypeOrmModule.forRoot({
             type: "mysql",
             host: databaseConfig().mysql.host,
@@ -22,11 +24,15 @@ import { FeaturesModule } from "@features"
             synchronize: true,
         }),
 
-        GlobalServicesModule,
-        
-        FeaturesModule
+        GlobalModule,
+        FeaturesModule,
     ],
     controllers: [],
-    providers: [],
+    providers: [
+        {
+            provide: APP_FILTER,
+            useClass: GrpcServerExceptionFilter,
+        },
+    ],
 })
 export class AppModule {}

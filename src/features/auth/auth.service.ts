@@ -1,27 +1,52 @@
-import { Controller, NotFoundException, UnauthorizedException } from "@nestjs/common"
+import { Controller } from "@nestjs/common"
 import { GrpcMethod } from "@nestjs/microservices"
-import { SignInInput } from "./interfaces"
 import { UserMySqlEntity } from "@database"
 import { InjectRepository } from "@nestjs/typeorm"
 import { Repository } from "typeorm"
-import { Sha256Service } from "@global"
+import { MailerService, Sha256Service } from "@global"
+import { SignInRequestBody, SignUpRequestBody } from "./shared"
+import {
+    GrpcAlreadyExistsException,
+    GrpcUnauthenticatedException,
+    GrpcUnavailableException,
+} from "nestjs-grpc-exceptions"
 
 @Controller()
-export default class AuthService  {
+export default class AuthService {
     constructor(
-        @InjectRepository(UserMySqlEntity)
-        private readonly userMySqlRepository: Repository<UserMySqlEntity>,
-        private readonly sha256Service: Sha256Service
-    ){}
+    @InjectRepository(UserMySqlEntity)
+    private readonly userMySqlRepository: Repository<UserMySqlEntity>,
+    private readonly sha256Service: Sha256Service,
+    private readonly mailerService: MailerService,
+    ) {}
 
-    @GrpcMethod("AuthService", "SignIn")
-    async signIn(data: SignInInput): Promise<UserMySqlEntity> {
+  @GrpcMethod("AuthService", "SignIn")
+    async signIn(body: SignInRequestBody): Promise<UserMySqlEntity> {
         const found = await this.userMySqlRepository.findOneBy({
-            email: data.email,
+            email: body.email,
         })
-        if (!found) throw new NotFoundException("User not found.")
-        if (!this.sha256Service.verifyHash(data.password, found.password))
-            throw new UnauthorizedException("Invalid credentials.")
+        if (!found) throw new GrpcUnavailableException("User not found.")
+        if (!this.sha256Service.verifyHash(body.password, found.password))
+            throw new GrpcUnauthenticatedException("Invalid credentials.")
         return found
     }
+
+  @GrpcMethod("AuthService", "SignUp")
+  async signUp(body: SignUpRequestBody): Promise<string> {
+      const found = await this.userMySqlRepository.findOne({
+          where: {
+              email: body.email,
+          },
+      })
+      if (found) {
+          throw new GrpcAlreadyExistsException(
+              `User with email ${body.email} has existed.`,
+          )
+      }
+      body.password = this.sha256Service.createHash(body.password)
+      const created = await this.userMySqlRepository.save(body)
+
+      await this.mailerService.sendMail(created.userId, body.email)
+      return `An user with id ${created.userId} has been created`
+  }
 }

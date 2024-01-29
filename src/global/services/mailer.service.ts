@@ -1,13 +1,13 @@
-import { appConfig, thirdPartyConfig } from "@config"
+import { appConfig, jwtConfig, thirdPartyConfig } from "@config"
 import { Injectable } from "@nestjs/common"
 import { createTransport } from "nodemailer"
-import { InternalServerErrorException } from "@nestjs/common"
-import { AuthManagerService } from "../base"
 import { TokenType } from "@shared"
+import { JwtService } from "@nestjs/jwt"
+import { GrpcInternalException } from "nestjs-grpc-exceptions"
 
 @Injectable()
 export default class MailerService {
-    constructor(private readonly authManagerService: AuthManagerService) {}
+    constructor(private readonly jwtService: JwtService) {}
 
     private transporter = createTransport({
         service: "gmail",
@@ -19,9 +19,9 @@ export default class MailerService {
 
     private mailOptions = (userId: string, email: string) => {
         const appUrl = appConfig().appUrl
-        const token = this.authManagerService.generateToken(
-            { userId },
-            TokenType.Verify,
+        const token = this.jwtService.sign(
+            { userId, type: TokenType.Verify },
+            { secret: jwtConfig().secret },
         )
         return {
             from: thirdPartyConfig().mailer.user,
@@ -43,7 +43,7 @@ export default class MailerService {
             this.transporter.sendMail(this.mailOptions(userId, email))
         } catch (ex) {
             console.error(ex)
-            throw new InternalServerErrorException(
+            throw new GrpcInternalException(
                 "Unable to deliver email due to a temporary server issue. We apologize for the inconvenience. Please try again later.",
             )
         }
