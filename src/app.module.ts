@@ -3,7 +3,7 @@ import { ConfigModule } from "@nestjs/config"
 import { TypeOrmModule } from "@nestjs/typeorm"
 import { databaseConfig, jwtConfig, thirdPartyConfig } from "@config"
 import { GlobalModule } from "@global"
-import { FeaturesModule } from "@features"
+import { ServicesModule } from "@services"
 import { APP_FILTER } from "@nestjs/core"
 import { GrpcServerExceptionFilter } from "nestjs-grpc-exceptions"
 
@@ -25,7 +25,7 @@ import { GrpcServerExceptionFilter } from "nestjs-grpc-exceptions"
         }),
 
         GlobalModule,
-        FeaturesModule,
+        ServicesModule,
     ],
     controllers: [],
     providers: [
