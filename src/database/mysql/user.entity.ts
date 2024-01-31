@@ -3,7 +3,7 @@ import SessionEntity from "./session.entity"
 import PostCommentEntity from "./post-comment.entity"
 import PostLikeEntity from "./post-like.entity"
 import EnrolledEntity from "./enrolled-info.entity"
-import { UserKind, UserRole } from "./shared"
+import { UserKind, UserRole } from "@common"
 import PostEntity from "./post.entity"
 import CourseEntity from "./course.entity"
 

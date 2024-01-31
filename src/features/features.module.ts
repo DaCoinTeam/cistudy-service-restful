@@ -5,4 +5,4 @@ import { CourseModule } from "./course"
 @Module({
     imports: [AuthModule, CourseModule],
 })
-export default class ServicesModule {}
+export default class FeaturesModule {}

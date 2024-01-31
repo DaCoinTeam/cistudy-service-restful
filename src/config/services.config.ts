@@ -1,8 +1,8 @@
 export default () => {
     return {
-        supabase: {
-            url: process.env.SUPABASE_URL,
-            key: process.env.SUPABASE_KEY
+        assetsManager: {
+            host: process.env.SERVICE_ASSETS_MANAGER_HOST,
+            port: process.env.SERVICE_ASSETS_MANAGER_PORT
         }
     }
 }

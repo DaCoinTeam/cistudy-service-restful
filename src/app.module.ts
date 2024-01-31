@@ -8,7 +8,7 @@ import {
     thirdPartyConfig,
 } from "@config"
 import { GlobalModule } from "@global"
-import { ServicesModule } from "@services"
+import { FeaturesModule } from "@features"
 import { APP_FILTER } from "@nestjs/core"
 import { GrpcServerExceptionFilter } from "nestjs-grpc-exceptions"
 
@@ -30,7 +30,7 @@ import { GrpcServerExceptionFilter } from "nestjs-grpc-exceptions"
         }),
 
         GlobalModule,
-        ServicesModule,
+        FeaturesModule,
     ],
     controllers: [],
     providers: [

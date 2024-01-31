@@ -1,10 +1,10 @@
 import {
-	Column,
-	Entity,
-	JoinColumn,
-	ManyToOne,
-	OneToMany,
-	PrimaryGeneratedColumn,
+    Column,
+    Entity,
+    JoinColumn,
+    ManyToOne,
+    OneToMany,
+    PrimaryGeneratedColumn,
 } from "typeorm"
 import PostEntity from "./post.entity"
 import PostCommentContentEntity from "./post-comment-content.entity"

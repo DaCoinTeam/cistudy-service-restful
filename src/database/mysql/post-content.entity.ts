@@ -1,13 +1,13 @@
 import {
-	Column,
-	Entity,
-	JoinColumn,
-	ManyToOne,
-	PrimaryGeneratedColumn,
+    Column,
+    Entity,
+    JoinColumn,
+    ManyToOne,
+    PrimaryGeneratedColumn,
 } from "typeorm"
 
 import PostEntity from "./post.entity"
-import { ContentType } from "./shared"
+import { ContentType } from "@common"
 
 @Entity("post_content")
 export default class PostContentEntity {

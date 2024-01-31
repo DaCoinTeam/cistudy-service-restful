@@ -3,4 +3,5 @@ enum UserRole {
   Moderator = "Moderator",
   Administrator = "Administrator",
 }
+
 export default UserRole

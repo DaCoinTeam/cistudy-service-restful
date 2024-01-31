@@ -20,7 +20,7 @@
     "paths": {
       "@config": ["src/config"],
       "@database": ["src/database"],
-      "@services": ["src/services"],
+      "@features": ["src/features"],
       "@global": ["src/global"],
       "@common": ["src/common"],
     },

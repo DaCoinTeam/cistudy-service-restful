@@ -29,5 +29,3 @@ export {
     ResourceMySqlEntity,
     EnrolledInfoEntity
 }
-
-export * from "./shared"

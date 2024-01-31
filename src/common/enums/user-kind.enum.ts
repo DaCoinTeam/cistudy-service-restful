@@ -3,4 +3,5 @@ enum UserKind {
   Google = "Google",
   Facebook = "Facebook",
 }
+
 export default UserKind

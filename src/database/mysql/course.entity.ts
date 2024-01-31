@@ -1,15 +1,15 @@
 import {
-  Column,
-  Entity,
-  JoinColumn,
-  ManyToOne,
-  OneToMany,
-  PrimaryGeneratedColumn,
+    Column,
+    Entity,
+    JoinColumn,
+    ManyToOne,
+    OneToMany,
+    PrimaryGeneratedColumn,
 } from "typeorm"
 
 import PostEntity from "./post.entity"
 import EnrolledEntity from "./enrolled-info.entity"
-import { VerifiedStatus } from "./shared"
+import { VerifiedStatus } from "@common"
 import SectionEntity from "./section.entity"
 import UserEntity from "./user.entity"
 
@@ -20,63 +20,63 @@ interface CourseIncludes {
 @Entity("course")
 export default class CourseEntity {
   @PrimaryGeneratedColumn("uuid")
-  courseId: string
+      courseId: string
 
   @Column({
-    type: "varchar",
-    length: 1000,
-    default: null,
+      type: "varchar",
+      length: 1000,
+      default: null,
   })
-  title: string
+      title: string
 
   @Column({
-    type: "varchar",
-    length: 255,
-    default: null,
+      type: "varchar",
+      length: 255,
+      default: null,
   })
-  thumbnailUrl: string
+      thumbnailId: string
 
   @Column({ type: "varchar", length: 1000 })
-  description: string
+      description: string
 
   @Column({ type: "float", default: 0 })
-  price: number
+      price: number
 
   @Column({ type: "enum", enum: VerifiedStatus, default: null })
-  verifiedStatus: VerifiedStatus
+      verifiedStatus: VerifiedStatus
 
   @Column({ default: true })
-  isDraft: boolean
+      isDraft: boolean
 
   @Column({ type: "uuid", length: 36 })
-  creatorId: string
+      creatorId: string
 
   @Column({ default: false })
-  isDeleted: boolean
+      isDeleted: boolean
 
   @Column({ type: "varchar", length: 255 })
-  previewVideoUrl: string
+      previewVideoId: string
 
   @Column({ type: "varchar", length: 255, default: null })
-  targets: string
+      targets: string
 
   @Column({ type: "json", default: null })
-  includes: CourseIncludes
+      includes: CourseIncludes
 
   // --- relations ---
   @OneToMany(() => PostEntity, (post) => post.course)
-  posts: PostEntity[]
+      posts: PostEntity[]
 
   @OneToMany(() => EnrolledEntity, (enrolled) => enrolled.course)
-  enrolledInfos: EnrolledEntity[]
+      enrolledInfos: EnrolledEntity[]
 
   //section
   @OneToMany(() => SectionEntity, (section) => section.course, {
-    onDelete: "CASCADE",
+      onDelete: "CASCADE",
   })
-  sections: SectionEntity[]
+      sections: SectionEntity[]
 
   @ManyToOne(() => UserEntity, (user) => user.courses)
   @JoinColumn({ name: "creatorId" })
-  creator: UserEntity
+      creator: UserEntity
 }

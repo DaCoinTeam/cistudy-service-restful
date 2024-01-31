@@ -3,5 +3,5 @@ enum VerifiedStatus {
   Approved = "Approved",
   Rejected = "Rejected",
 }
-export default VerifiedStatus
 
+export default VerifiedStatus
