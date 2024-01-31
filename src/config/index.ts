@@ -1,15 +1,15 @@
 import appConfig from "./app.config"
 import databaseConfig from "./database.config"
 import jwtConfig from "./jwt.config"
-import assetConfig from "./asset.config"
+import servicesConfig from "./services.config"
 import thirdPartyConfig from "./third-party.config"
-import pathConfig from "./path.config"
+import pathConfig from "./services.config"
 
 export {
     appConfig,
     databaseConfig,
     jwtConfig,
-    assetConfig,
+    servicesConfig,
     thirdPartyConfig,
     pathConfig
 }
