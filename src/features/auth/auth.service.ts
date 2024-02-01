@@ -4,12 +4,13 @@ import { UserMySqlEntity } from "@database"
 import { InjectRepository } from "@nestjs/typeorm"
 import { Repository } from "typeorm"
 import { MailerService, Sha256Service } from "@global"
-import { SignInRequestBody, SignUpRequestBody } from "./shared"
+import { SignInInput, SignUpInput } from "./shared"
 import {
     GrpcAlreadyExistsException,
     GrpcUnauthenticatedException,
     GrpcUnavailableException,
 } from "nestjs-grpc-exceptions"
+import { MessageResponse } from "@common"
 
 @Controller()
 export default class AuthService {
@@ -21,7 +22,7 @@ export default class AuthService {
     ) {}
 
   @GrpcMethod("AuthService", "signIn")
-    async signIn(body: SignInRequestBody): Promise<UserMySqlEntity> {
+    async signIn(body: SignInInput): Promise<UserMySqlEntity> {
         const found = await this.userMySqlRepository.findOneBy({
             email: body.email,
         })
@@ -32,7 +33,7 @@ export default class AuthService {
     }
 
   @GrpcMethod("AuthService", "signUp")
-  async signUp(body: SignUpRequestBody): Promise<string> {
+  async signUp(body: SignUpInput): Promise<MessageResponse> {
       const found = await this.userMySqlRepository.findOne({
           where: {
               email: body.email,
@@ -47,6 +48,8 @@ export default class AuthService {
       const created = await this.userMySqlRepository.save(body)
 
       await this.mailerService.sendMail(created.userId, body.email)
-      return `An user with id ${created.userId} has been created`
+      return {
+          message: `An user with id ${created.userId} has been created`,
+      }
   }
 }

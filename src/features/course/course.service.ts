@@ -3,7 +3,7 @@ import { GrpcMethod } from "@nestjs/microservices"
 import { CourseMySqlEntity } from "@database"
 import { InjectRepository } from "@nestjs/typeorm"
 import { Repository } from "typeorm"
-import { SerializableFormData, WithUserId } from "@common"
+import { MessageResponse, SerializableFormData, WithUserId } from "@common"
 import { CreateData } from "./shared"
 import { AssetsManagerService } from "@global"
 
@@ -16,7 +16,7 @@ export default class CourseService {
     ) {}
 
   @GrpcMethod("CourseService", "create")
-    async create(body: WithUserId<SerializableFormData<CreateData>>) {
+    async create(body: WithUserId<SerializableFormData<CreateData>>) : Promise<MessageResponse> {
         console.log(body)
         const { description, price, title } = body.data
         const promises: Array<Promise<void>> = []

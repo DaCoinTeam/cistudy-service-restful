@@ -4,6 +4,7 @@ import AuthTokens from "./auth-tokens.interface"
 import SerializableFile from "./serializable-file.interface"
 import SerializableFormData from "./serializable-form-data.interface"
 import Metadata from "./metadata.interface"
+import MessageResponse from "./message-response.interface"
 
 export {
     Payload,
@@ -11,5 +12,6 @@ export {
     AuthTokens,
     SerializableFile,
     SerializableFormData,
-    Metadata
+    Metadata,
+    MessageResponse
 }
