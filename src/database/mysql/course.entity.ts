@@ -30,8 +30,8 @@ export default class CourseEntity {
       title: string
 
   @Column({
-      type: "varchar",
-      length: 255,
+      type: "uuid",
+      length: 36,
       default: null,
   })
       thumbnailId: string
@@ -54,7 +54,7 @@ export default class CourseEntity {
   @Column({ default: false })
       isDeleted: boolean
 
-  @Column({ type: "varchar", length: 255 })
+  @Column({ type: "uuid", length: 36 })
       previewVideoId: string
 
   @Column({ type: "varchar", length: 255, default: null })
