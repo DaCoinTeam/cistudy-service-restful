@@ -2,11 +2,12 @@ syntax = "proto3";
 
 package course;
 
-import "./inputs/messages/create-message.input.proto";
+import "./inputs/create.input.proto";
 import "../../dtos/course.dto.proto";
+import "../../base/message-response.base.proto";
 
 service CourseService {
-  rpc Create(CreateMessage) returns (Course) {}
+  rpc create(CreateInput) returns (MessageResponse) {}
 }
 
 

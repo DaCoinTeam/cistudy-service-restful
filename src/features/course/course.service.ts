@@ -15,8 +15,9 @@ export default class CourseService {
     private readonly assetsManagerService: AssetsManagerService,
     ) {}
 
-  @GrpcMethod("CourseService", "Create")
+  @GrpcMethod("CourseService", "create")
     async create(body: WithUserId<SerializableFormData<CreateData>>) {
+        console.log(body)
         const { description, price, title } = body.data
         const promises: Array<Promise<void>> = []
 
@@ -48,6 +49,8 @@ export default class CourseService {
         })
 
         if (created)
-            return `Course with id ${created.courseId} has been creeated successfully.`
+            return {
+                message: `Course with id ${created.courseId} has been creeated successfully.`,
+            }
     }
 }

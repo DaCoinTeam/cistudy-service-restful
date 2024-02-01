@@ -2,16 +2,16 @@ syntax = "proto3";
 
 package auth;
 
-import "./inputs/request-bodies/sign-in-request-body.input.proto";
-import "./inputs/request-bodies/sign-up-request-body.input.proto";
-import "./inputs/data/verify-google-access-token-data.input.proto";
+import "./inputs/sign-in.input.proto";
+import "./inputs/sign-up.input.proto";
+import "./inputs/verify-google-access-token.input.proto";
 
 import "../../dtos/user.dto.proto";
 
 service AuthService {
-  rpc SignIn (SignInRequestBody) returns (User) {}
-  rpc SignUp (SignUpRequestBody) returns (User) {}
-  rpc VerifyGoogleAccessToken(VerifyGoogleAccessTokenData) returns (User) {}
+  rpc signIn (SignInInput) returns (User) {}
+  rpc signUp (SignUpInput) returns (User) {}
+  rpc verifyGoogleAccessToken(VerifyGoogleAccessTokenInput) returns (User) {}
 //  rpc Init(UserId) returns (User) {}
 }
 

@@ -20,7 +20,7 @@ export default class AuthService {
     private readonly mailerService: MailerService,
     ) {}
 
-  @GrpcMethod("AuthService", "SignIn")
+  @GrpcMethod("AuthService", "signIn")
     async signIn(body: SignInRequestBody): Promise<UserMySqlEntity> {
         const found = await this.userMySqlRepository.findOneBy({
             email: body.email,
@@ -31,7 +31,7 @@ export default class AuthService {
         return found
     }
 
-  @GrpcMethod("AuthService", "SignUp")
+  @GrpcMethod("AuthService", "signUp")
   async signUp(body: SignUpRequestBody): Promise<string> {
       const found = await this.userMySqlRepository.findOne({
           where: {
