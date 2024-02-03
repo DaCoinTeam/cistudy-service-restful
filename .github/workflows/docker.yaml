@@ -15,3 +15,4 @@ jobs:
 
     - name: Run Docker compose command
       run: docker compose up --build -d
+      
