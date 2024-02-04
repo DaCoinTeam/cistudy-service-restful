@@ -1,0 +1,13 @@
+syntax = "proto3";
+
+syntax = "proto3";
+
+message CreateSectionData {
+    string courseId = 2;
+    string title = 1;
+}
+
+message CreateSectionInput {
+    string userId = 1;
+    CreateSectionData data = 2;
+ }

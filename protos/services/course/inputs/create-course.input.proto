@@ -4,14 +4,14 @@ import "../../../base/file.base.proto";
 
 syntax = "proto3";
 
-message CreateData {
+message CreateCourseData {
     string title = 1;
     string description = 2;
     int32 price = 3;
 }
 
-message CreateInput {
+message CreateCourseInput {
     string userId = 1;
-    CreateData data = 2;
+    CreateCourseData data = 2;
     repeated File files = 3;
  }

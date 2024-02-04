@@ -1,0 +1,16 @@
+syntax = "proto3";
+
+import "../../../base/file.base.proto";
+
+syntax = "proto3";
+
+message CreateLectureData {
+    string sectionId = 1;
+    string title = 2;
+}
+
+message CreateLectureInput {
+    string userId = 1;
+    CreateLectureData data = 2;
+    repeated File files = 3;
+ }

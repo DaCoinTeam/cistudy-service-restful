@@ -4,6 +4,7 @@ import ContentType from "./content-type.enum"
 import UserKind from "./user-kind.enum"
 import VerifiedStatus from "./verified-status.enum"
 import UserRole from "./user-role.enum"
+import FileType from "./file-type.enum"
 
 export {
     TokenType,
@@ -12,4 +13,5 @@ export {
     UserKind,
     VerifiedStatus,
     UserRole,
+    FileType
 }

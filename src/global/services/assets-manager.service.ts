@@ -25,3 +25,4 @@ export default class AssetsManagerService implements OnModuleInit {
         return await lastValueFrom(this.client.send<Metadata>("upload", file))
     }
 }
+

@@ -2,7 +2,7 @@ import { SerializableFormData, WithUserId } from "@common"
 import { ApiProperty } from "@nestjs/swagger"
 import { IsNumber, Length } from "class-validator"
 
-export class CreateData {
+export class CreateCourseData {
   @Length(20)
   @ApiProperty()
       title: string
@@ -16,5 +16,5 @@ export class CreateData {
       price: number
 }
 
-type CreateInput = WithUserId<SerializableFormData<CreateData>>
-export default CreateInput
+type CreateCourseInput = WithUserId<SerializableFormData<CreateCourseData>>
+export default CreateCourseInput
