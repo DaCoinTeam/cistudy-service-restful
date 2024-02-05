@@ -5,7 +5,7 @@ import { InjectRepository } from "@nestjs/typeorm"
 import { Repository } from "typeorm"
 import { MessageResponse } from "@common"
 import { CreateCourseInput, CreateLectureInput, CreateSectionInput } from "./shared"
-import { AssetsManagerService } from "@global"
+import { AssetsManagerService, MpegDashConverterService } from "@global"
 import { GrpcNotFoundException } from "nestjs-grpc-exceptions"
 
 @Controller()
@@ -18,6 +18,7 @@ export default class CourseService {
         @InjectRepository(LectureMySqlEntity)
         private readonly lectureMySqlRepository: Repository<LectureMySqlEntity>,
         private readonly assetsManagerService: AssetsManagerService,
+        private readonly mpegDashConverterService: MpegDashConverterService,
     ) { }
 
     @GrpcMethod("CourseService", "createCourse")
@@ -83,7 +84,7 @@ export default class CourseService {
         let videoId: string
         const video = input.files.at(0)
         const uploadVideoPromise = async () => {
-            const { assetId } = await this.assetsManagerService.upload(video)
+            const { assetId } = await this.mpegDashConverterService.convert(video)
             videoId = assetId
         }
         promises.push(uploadVideoPromise())

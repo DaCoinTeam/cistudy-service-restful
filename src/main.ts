@@ -10,6 +10,7 @@ const bootstrap = async () => {
             transport: Transport.GRPC,
             options: {
                 url: "0.0.0.0:3002",
+                maxReceiveMessageLength: 1024 * 1024 * 1024 * 5,
                 package: ["auth", "course"],
                 protoPath: [
                     join(
@@ -31,5 +32,5 @@ const bootstrap = async () => {
         },
     )
     await app.listen()
-}
-bootstrap()
+}  
+bootstrap()        

@@ -6,7 +6,7 @@ export default () => {
         },
         mpegDashConverter: {
             host: process.env.SERVICE_MPEG_DASH_CONVERTER_HOST,
-            port: process.env.SERVICE_MPEG_DASH_CONVERTER_POST
+            port: process.env.SERVICE_MPEG_DASH_CONVERTER_PORT
         }
     }
 }

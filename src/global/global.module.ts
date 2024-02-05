@@ -3,6 +3,7 @@ import {
     AssetsManagerService,
     FirebaseService,
     MailerService,
+    MpegDashConverterService,
     Sha256Service,
 } from "./services"
 import { JwtService } from "@nestjs/jwt"
@@ -18,6 +19,7 @@ import { TypeOrmModule } from "@nestjs/typeorm"
         MailerService,
         Sha256Service,
         JwtService,
+        MpegDashConverterService
     ],
     providers: [
         AssetsManagerService,
@@ -25,6 +27,7 @@ import { TypeOrmModule } from "@nestjs/typeorm"
         MailerService,
         Sha256Service,
         JwtService,
+        MpegDashConverterService
     ],
 })
 export default class GlobalModule {}
